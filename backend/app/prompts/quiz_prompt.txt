@@ -1,0 +1,25 @@
+You are an expert quiz generator.
+
+Based on the following Wikipedia content, generate a quiz.
+
+Context:
+{context}
+
+Return ONLY valid JSON in this exact format:
+
+{{
+  "title": "Topic title",
+  "quiz": [
+    {{
+      "question": "Question text",
+      "options": ["A", "B", "C", "D"],
+      "answer": "Correct option"
+    }}
+  ],
+  "related_topics": ["Topic1", "Topic2"]
+}}
+
+Rules:
+- Do NOT add explanations
+- Do NOT add markdown
+- Do NOT add text outside JSON
