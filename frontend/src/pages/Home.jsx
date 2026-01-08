@@ -12,9 +12,7 @@ function Home() {
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
 
-  /* =========================
-     Generate Quiz
-  ========================== */
+  
   const generateQuiz = async () => {
     if (!url.trim()) {
       setError("Please enter a Wikipedia URL");
@@ -42,16 +40,14 @@ function Home() {
     }
   };
 
-  /* =========================
-     Load History
-  ========================== */
+  
   const loadHistory = async () => {
     try {
       setError("");
       const res = await fetch(`${API_BASE}/history`);
       const result = await res.json();
 
-      // ✅ IMPORTANT FIX
+     
       setHistory(result.data || []);
     } catch {
       setError("Failed to load quiz history");
@@ -66,7 +62,6 @@ function Home() {
 
   return (
     <div className="container">
-      {/* ===== Tabs ===== */}
       <div className="tabs">
         <button
           className={activeTab === "generate" ? "active" : ""}
@@ -89,7 +84,7 @@ function Home() {
         </button>
       </div>
 
-      {/* ===== TAB 1: Generate Quiz ===== */}
+      
       {activeTab === "generate" && (
         <>
           <div className="input-group">
@@ -108,12 +103,11 @@ function Home() {
         </>
       )}
 
-      {/* ===== TAB 2: Quiz History ===== */}
+      
       {activeTab === "history" && (
         <HistoryTable history={history} />
       )}
 
-      {/* ===== Error ===== */}
       {error && <p className="error">{error}</p>}
     </div>
   );
