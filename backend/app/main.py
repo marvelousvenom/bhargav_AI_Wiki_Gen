@@ -13,10 +13,7 @@ app = FastAPI(title=settings.PROJECT_NAME)
 #FIXED CORS (supports Vercel + local)
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=[
-        "http://localhost:3000",
-        "https://bhargav-ai-wiki-gen.vercel.app"
-    ],
+    allow_origins=["*"],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
