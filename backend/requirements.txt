@@ -1,12 +1,9 @@
 fastapi
 uvicorn
+gunicorn
 sqlalchemy
-psycopg2-binary
+pydantic
 python-dotenv
 requests
 beautifulsoup4
-langchain
-langchain-google-genai
-pydantic
-mysqlclient
-
+groq
