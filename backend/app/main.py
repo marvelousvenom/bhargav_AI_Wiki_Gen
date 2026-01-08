@@ -10,10 +10,13 @@ Base.metadata.create_all(bind=engine)
 
 app = FastAPI(title=settings.PROJECT_NAME)
 
-# ✅ ADD THIS BLOCK
+#FIXED CORS (supports Vercel + local)
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:3000"],  # React runs here
+    allow_origins=[
+        "http://localhost:3000",
+        "https://bhargav-ai-wiki-gen.vercel.app"
+    ],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
