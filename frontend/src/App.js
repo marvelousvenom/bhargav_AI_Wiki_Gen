@@ -22,10 +22,14 @@ function App() {
     try {
       const res = await fetch(
         `${API_BASE}/quiz/generate?url=${encodeURIComponent(url)}`,
-        { method: "POST" }
+        {
+          method: "POST",
+        }
       );
 
-      if (!res.ok) throw new Error("Failed");
+      if (!res.ok) {
+        throw new Error("Request failed");
+      }
 
       const data = await res.json();
       setQuiz(data);
