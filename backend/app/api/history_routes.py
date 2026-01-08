@@ -9,9 +9,7 @@ router = APIRouter(
     tags=["History"]
 )
 
-# =========================
-# DB Dependency
-# =========================
+
 def get_db():
     db = SessionLocal()
     try:
@@ -19,9 +17,7 @@ def get_db():
     finally:
         db.close()
 
-# =========================
-# Get Quiz History
-# =========================
+
 @router.get("/")
 def get_quiz_history(db: Session = Depends(get_db)):
     try:
