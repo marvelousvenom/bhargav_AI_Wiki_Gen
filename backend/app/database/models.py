@@ -7,8 +7,8 @@ class WikiQuiz(Base):
 
     id = Column(Integer, primary_key=True, index=True)
 
-    
-    url = Column(String(500), unique=True, nullable=False)
+    # ❌ removed unique=True
+    url = Column(String(500), nullable=False)
     title = Column(String(255), nullable=False)
 
     summary = Column(Text)

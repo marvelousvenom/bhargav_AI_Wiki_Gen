@@ -47,9 +47,12 @@ function Home() {
   ========================== */
   const loadHistory = async () => {
     try {
+      setError("");
       const res = await fetch(`${API_BASE}/history`);
-      const data = await res.json();
-      setHistory(data);
+      const result = await res.json();
+
+      // ✅ IMPORTANT FIX
+      setHistory(result.data || []);
     } catch {
       setError("Failed to load quiz history");
     }
