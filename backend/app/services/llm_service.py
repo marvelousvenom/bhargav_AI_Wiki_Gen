@@ -12,7 +12,6 @@ def extract_json(text: str) -> dict:
     """
     Safely extract JSON from LLM response
     """
-    # Remove markdown code blocks if present
     text = re.sub(r"```json|```", "", text).strip()
 
     # Extract JSON object
@@ -30,7 +29,7 @@ def generate_quiz_llm(context: str) -> dict:
 
     # Call Groq LLM
     response = client.chat.completions.create(
-        model="llama-3.1-8b-instant",  # ✅ supported model
+        model="llama-3.1-8b-instant", 
         messages=[
             {
                 "role": "user",
@@ -42,5 +41,5 @@ def generate_quiz_llm(context: str) -> dict:
 
     raw_output = response.choices[0].message.content
 
-    # ✅ SAFE JSON PARSING
+    
     return extract_json(raw_output)

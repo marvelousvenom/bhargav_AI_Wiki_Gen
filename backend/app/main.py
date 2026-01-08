@@ -10,7 +10,7 @@ Base.metadata.create_all(bind=engine)
 
 app = FastAPI(title=settings.PROJECT_NAME)
 
-#FIXED CORS (supports Vercel + local)
+
 app.add_middleware(
     CORSMiddleware,
     allow_origins=["*"],

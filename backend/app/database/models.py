@@ -7,7 +7,7 @@ class WikiQuiz(Base):
 
     id = Column(Integer, primary_key=True, index=True)
 
-    # ✅ MySQL requires length for VARCHAR
+    
     url = Column(String(500), unique=True, nullable=False)
     title = Column(String(255), nullable=False)
 
