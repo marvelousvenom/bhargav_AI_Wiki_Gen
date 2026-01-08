@@ -1,18 +1,27 @@
 import { useState } from "react";
 import "./App.css";
 
+const API_BASE = "https://bhargav-ai-wiki-gen.onrender.com";
+
 function App() {
   const [url, setUrl] = useState("");
   const [quiz, setQuiz] = useState(null);
   const [error, setError] = useState("");
+  const [loading, setLoading] = useState(false);
 
   const generateQuiz = async () => {
+    if (!url) {
+      setError("Please enter a Wikipedia URL");
+      return;
+    }
+
     setError("");
     setQuiz(null);
+    setLoading(true);
 
     try {
       const res = await fetch(
-        `http://127.0.0.1:8000/quiz/generate?url=${encodeURIComponent(url)}`,
+        `${API_BASE}/quiz/generate?url=${encodeURIComponent(url)}`,
         { method: "POST" }
       );
 
@@ -22,6 +31,8 @@ function App() {
       setQuiz(data);
     } catch (err) {
       setError("Failed to generate quiz");
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -36,7 +47,9 @@ function App() {
           value={url}
           onChange={(e) => setUrl(e.target.value)}
         />
-        <button onClick={generateQuiz}>Generate Quiz</button>
+        <button onClick={generateQuiz} disabled={loading}>
+          {loading ? "Generating..." : "Generate Quiz"}
+        </button>
       </div>
 
       {error && <p className="error">{error}</p>}
